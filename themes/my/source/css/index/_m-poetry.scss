@@ -1,0 +1,29 @@
+.m-poetry {
+    padding-top: 20px;
+    padding-bottom: 40px;
+    color: #fff;
+    text-align: center;
+
+    p {
+        animation-name: fade-in;
+        animation-duration: .6s;
+        animation-fill-mode: both;
+        animation-timing-function: linear;
+
+        @for $i from 1 through 3 {
+            &:nth-child(#{ $i }) {
+                animation-delay: $i * .2s;
+            }
+        }
+
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: .86;
+            }
+        }
+    }
+}

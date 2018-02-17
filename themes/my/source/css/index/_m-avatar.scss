@@ -1,0 +1,31 @@
+.m-avatar {
+    .avatar {
+        overflow: hidden;
+        position: relative;
+        width: 120px;
+        height: 120px;
+        background-image: url(../img/avatar.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 50%;
+        border: 3px solid #f0f0f0;
+
+        animation: background-position .6s ease;
+
+        &.animate {
+            background-position: center center;
+        }
+
+        &:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 300%;
+            height: 300%;
+            border-radius: 50%;
+
+            background-color: rgba(#fff, .2);
+        }
+    }
+}

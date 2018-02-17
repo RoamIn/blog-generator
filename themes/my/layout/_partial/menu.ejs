@@ -1,0 +1,40 @@
+<div id="J_Menu" class="menu">
+    <button id="J_MenuSwitch" class="switch"><i class="icon"><svg viewBox="0 0 20 20" preserveAspectRatio="xMidYMid meet" style="pointer-events: none; display: block; width: 100%; height: 100%;"><g><rect x="2" y="4" width="16" height="2"></rect><rect x="2" y="9" width="16" height="2"></rect><rect x="2" y="14" width="16" height="2"></rect></g></svg></i></button>
+
+    <div class="drawer">
+        <nav class="menu-nav">
+            <% for (var menu in theme.menu){ %>
+                <a class="nav-item" href="<%- url_for(theme.menu[menu]) %>">
+                    <%= menu %>
+                </a>
+            <% } %>
+        </nav>
+    </div>
+    <div id="J_Backdrop" class="backdrop"></div>
+</div>
+<script>
+	const $menu = document.querySelector('#J_Menu');
+	const $menuSwitch = document.querySelector('#J_MenuSwitch');
+	const $backdrop = document.querySelector('#J_Backdrop');
+
+	function toggleMenu() {
+		const toggleClassName = 'active';
+		let menuClassName = $menu.className;
+
+		if (menuClassName.indexOf(toggleClassName) > -1) {
+			menuClassName = ' ' + menuClassName + ' ';
+			menuClassName = menuClassName.replace(' ' + toggleClassName + ' ', ' ');
+			$menu.className = menuClassName.trim();
+		} else {
+			$menu.className = $menu.className + ' ' + toggleClassName;
+		}
+	}
+
+	$menuSwitch.addEventListener('click', function () {
+		toggleMenu();
+	})
+
+	$backdrop.addEventListener('click', function () {
+		toggleMenu();
+    })
+</script>

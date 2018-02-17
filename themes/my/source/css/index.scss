@@ -1,0 +1,76 @@
+@import "variables";
+@import "mixins";
+@import "partial/menu";
+@import "partial/header";
+@import "partial/footer";
+@import "index/m-links";
+@import "index/m-copyright";
+
+body {
+    min-height: 100vh;
+    //background-image: url("../img/bg.jpg");
+    //background-position: center center;
+    //background-repeat: no-repeat;
+    //background-attachment: fixed;
+    //background-size: cover;
+    background-color: #f6f6f6;
+
+    @include custom-scrollbar(y);
+}
+
+main {
+    overflow: hidden;
+    padding: 30px 15px 40px;
+}
+
+article {
+    overflow: hidden;
+    float: left;
+    margin: 0 15px 30px 15px;
+    border-radius: 6px;
+
+    @media screen and (max-width: 2279px) {
+        width: calc(20% - 30px);
+    }
+    @media screen and (max-width: 1909px) {
+        width: calc(25% - 30px);
+    }
+    @media screen and (max-width: 1539px) {
+        width: calc(33.333% - 30px);
+    }
+    @media screen and (max-width: 1169px) {
+        width: calc(50% - 30px);
+    }
+    @media screen and (max-width: 767px) {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    .info {
+        padding: 12px 24px 24px;
+        background-color: #fff;
+    }
+
+    .title {
+        @include text-truncate;
+
+        height: 36px;
+        line-height: 36px;
+        font-weight: 400;
+        font-size: 24px;
+        color: #000;
+    }
+
+    .summary {
+        overflow: hidden;
+        font-size: 16px;
+        line-height: 1.5;
+        height: 16px * 3;
+        color: #7f7f7f;
+    }
+}

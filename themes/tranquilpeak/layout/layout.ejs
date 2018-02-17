@@ -1,0 +1,42 @@
+<%
+    var sidebarBehavior;
+    // Clear reading feature. Hide sidebar on article page if the feature is activated
+    if (is_post() && theme.sidebar_behavior < 3 &&
+        ((theme.clear_reading === true && page.clearReading !== false) ||
+        page.clearReading === true)) {
+        sidebarBehavior = theme.sidebar_behavior + 3;
+    }
+    else {
+        sidebarBehavior = theme.sidebar_behavior;
+    }
+%>
+<!DOCTYPE html>
+<html lang="<%= config.language %>">
+    <%- partial('partial/head') %>
+    <body>
+        <div id="blog">
+            <%- partial('partial/header', {sidebarBehavior: sidebarBehavior}) %>
+            <%- partial('partial/sidebar', {sidebarBehavior: sidebarBehavior}) %>
+            <%- partial('partial/post/header-cover', {post: page, sidebarBehavior: sidebarBehavior}) %>
+            <div id="main" data-behavior="<%= sidebarBehavior %>"
+                 class="<%= (page.coverImage ? 'hasCover' : '') %>
+                        <%= (page.coverMeta === 'out' ? 'hasCoverMetaOut' : 'hasCoverMetaIn') %>
+                        <%= (page.coverCaption ? 'hasCoverCaption' : '') %>">
+                <%- body %>
+                <%- partial('partial/footer', null, {cache: !config.relative_link}) %>
+            </div>
+            <% if (is_post() && (page.actions === undefined || page.actions)) { %>
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="<%= sidebarBehavior %>">
+                    <%- partial('partial/post/actions', {post: page}) %>
+                </div>
+                <%- partial('partial/post/share-options', {post: page, sidebarBehavior: sidebarBehavior}) %>
+            <% } %>
+        </div>
+        <%- partial('partial/about', null, {cache: !config.relative_link}) %>
+        <% if (config.algolia) { %>
+            <%- partial('partial/search', null, {cache: true}) %>
+        <% } %>
+        <%- partial('partial/cover', null, {cache: !config.relative_link}) %>
+        <%- partial('partial/script', {post: page}) %>
+    </body>
+</html>

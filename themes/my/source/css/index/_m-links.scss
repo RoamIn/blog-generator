@@ -1,0 +1,39 @@
+.m-links {
+    .link {
+        $w: 180px;
+        $h: 60px;
+
+        display: inline-block;
+        position: relative;
+        width: $w;
+        line-height: $h;
+        font-size: 12px;
+        text-align: center;
+        text-decoration: none;
+        user-select: none;
+
+        &.blog {
+            color: #5E89FB;
+        }
+
+        &.github {
+            color: #18F38C;
+        }
+
+        &.jian-shu {
+            color: #ea6e59;
+        }
+    }
+
+    svg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        stroke-width: 1;
+        fill: none;
+        fill-rule: evenodd;
+        stroke: currentColor;
+    }
+}
