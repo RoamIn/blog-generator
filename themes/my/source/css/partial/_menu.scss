@@ -20,11 +20,12 @@
 
     .drawer {
         z-index: 2;
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0;
         bottom: 0;
 
+        @include custom-scrollbar(y);
         width: $menu-width;
         background-color: #fefefe;
         transform: translateX(-100%);
@@ -35,13 +36,17 @@
             height: 36px;
             line-height: 36px;
             padding: 0 16px 0 12px;
+
+            &.active {
+                background-color: #3c3c3c;
+            }
         }
     }
 
     .backdrop {
         z-index: 1;
         display: none;
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0;
         right: 0;

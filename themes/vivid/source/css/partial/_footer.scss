@@ -1,0 +1,13 @@
+body > footer {
+    padding: 12px 0;
+    font-size: 14px;
+    color: #ccc;
+    text-align: center;
+    border-top: 1px solid #474747;
+    background-color: #161616;
+    letter-spacing: 2px;
+
+    .stats {
+        display: none;
+    }
+}

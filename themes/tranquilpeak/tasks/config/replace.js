@@ -4,7 +4,7 @@ module.exports = function(grunt) {
     linker: {
       overwrite: true,
       src: [
-        'layout/partial/head.ejs',
+        'layout/partial/head.njk',
         'layout/partial/script.ejs'
       ],
       replacements: [{

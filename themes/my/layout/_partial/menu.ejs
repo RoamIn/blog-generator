@@ -3,6 +3,7 @@
 
     <div class="drawer">
         <nav class="menu-nav">
+
             <% for (var menu in theme.menu){ %>
                 <a class="nav-item" href="<%- url_for(theme.menu[menu]) %>">
                     <%= menu %>

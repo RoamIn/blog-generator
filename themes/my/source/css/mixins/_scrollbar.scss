@@ -21,3 +21,12 @@
         background-color: #bbb;
     }
 }
+
+@mixin hide-scrollbar() {
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}

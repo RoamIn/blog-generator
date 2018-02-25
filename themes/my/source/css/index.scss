@@ -15,11 +15,11 @@ body {
     //background-size: cover;
     background-color: #f6f6f6;
 
-    @include custom-scrollbar(y);
+    @include hide-scrollbar;
 }
 
 main {
-    overflow: hidden;
+    @include clearfix;
     padding: 30px 15px 40px;
 }
 
