@@ -1,10 +1,8 @@
 article {
-    margin: 0 auto;
+    flex: 1;
     padding: 40px;
-    width: 1000px;
     border-radius: 3px;
     background-color: #fff;
-    border: 1px solid #dadada;
 
     @media screen and (max-width: 1169px) {
         width: calc(100% - 30px);

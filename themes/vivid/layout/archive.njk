@@ -1,81 +1,36 @@
 {% extends 'partial/layout.njk' %}
 
 {% block body %}
-    {% set categoriesList = list_categories({ show_count: false }) %}
-    {% set tagsList = list_tags({ show_count: false }) %}
-    {% set archivesList = list_archives({ show_count: false }) %}
+    {#####################}
+    {### ARCHIVE BLOCK ###}
+    {#####################}
+    <section class="archive-block">
+        {# <h2 class="archive-page-counter">
+           非常好! 目前共计 {{ site.posts.length }} 篇日志。 继续努力。 
+        </h2> #}
 
-    {% if not is_year() %}
-        <div id="archive">
-            <h1>Archives</h1>
-            {% if theme.atom %}
-                <p>
-                    The feed is available via
-                    <a href="{{ theme.atom }}">atom</a>.
-                </p>
-                <br>
+        {% set currentYear = 0 %}
+        {% for post in page.posts.data %}
+            {% set postYear = date(post.date, 'YYYY') %}
+
+            {% if currentYear !==  postYear %}
+                {% set currentYear = postYear %}
+                    <div class="archive-meta">
+                        <time class="archive-year">{{ currentYear }}</time>
+                    </div>
             {% endif %}
 
-            {% if config.atom %}
-                <p>
-                    The feed is available via
-                    <a href="{{ config.atom }}">atom</a>.
-                </p>
-                <br>
-            {% endif %}
-
-            <aside>
-                <h2>Categories</h2>
-                {% if categoriesList %}
-                    {{ categoriesList }}
-                {% else %}
-                    <p>None.</p>
-                {% endif %}
-            </aside>
-            <br>
-
-            <aside>
-                <h2>Tags</h2>
-                {% if tagsList %}
-                    {{ tagsList }}
-                {% else %}
-                    <p>None.</p>
-                {% endif %}
-            </aside>
-            <br>
-
-            <aside>
-                <h2>Archives</h2>
-                {% if archivesList %}
-                    {{ archivesList }}
-                {% else %}
-                    <p>None.</p>
-                {% endif %}
-            </aside>
-        </div>
-    {% else %}
-        <h1>{{ page.month + '/' + page.year }}</h1>
-        {% for postItem in page.posts.toArray() %}
-            <div class="archive-item">
-                {% if postItem.link %}
-                    <!-- external link -->
-                    <a href="{{ url_for(postItem.link) }}" target="_blank">
-                        {{ postItem.title or 'No Title' }}
-                    </a>
-                {% endif %}
-
-                {% if not postItem.link %}
-                    <!-- internal link -->
-                    <a href="{{ url_for(postItem.path) }}">
-                        {{ postItem.title or 'No Title' }}
-                    </a>
-                {% endif %}
-
-                <time datetime="{{ date_xml(postItem.date) }}">
-                    {{ date(postItem.date) }}
-                </time>
+            <div class="post">
+                <i class="dot"></i>
+                <time>{{ date(post.date, 'MM-DD') }}</time>
+                <h2 class="post-title">{{ post.title }}</h2>
             </div>
         {% endfor %}
-        {{ paginator() }}
-    {% endif %}
+        </div>
+    </section>
+    {#########################}
+    {### END ARCHIVE BLOCK ###}
+    {#########################}
+
+    {% include 'partial/pagination.njk' %}
 {% endblock %}
